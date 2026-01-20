@@ -541,6 +541,8 @@ M.setup = function(config)
         clearjumps_on_change = true,
         -- default to false to avoid breaking the previous default behavior
         confirm_telescope_deletions = false,
+        -- default to false to avoid breaking the previous default behavior
+        confirm_fzf_deletions = false,
         -- should this default to true or false?
         autopush = false,
     }, config)

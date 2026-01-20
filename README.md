@@ -15,6 +15,7 @@ fix that).
   - [Options](#options)
   - [Usage](#usage)
   - [Telescope](#telescope)
+  - [Fzf-lua](#fzf-lua)
   - [Hooks](#hooks)
   - [Made with fury](#made-with-fury)
 
@@ -29,6 +30,7 @@ There are a few known issues.  I'll try to be actively filing them in the issues
 Requires NeoVim 0.5+
 Requires plenary.nvim
 Optional telescope.nvim for telescope extension
+Optional fzf-lua for fzf-lua extension
 
 ## Getting Started<a name="getting-started"></a>
 
@@ -90,6 +92,10 @@ This option defaults to `e .` which opens the root directory of the new worktree
 `clearjumps_on_change`: Every time you switch branches, your jumplist will be
 cleared so that you don't accidentally go backward to a different branch and
 edit the wrong files.
+
+`confirm_telescope_deletions`: When true, Telescope delete actions require confirmation.
+
+`confirm_fzf_deletions`: When true, fzf-lua delete actions require confirmation.
 
 `autopush`: When creating a new worktree, it will push the branch to the upstream then perform a `git rebase`
 
@@ -155,6 +161,31 @@ First a telescope git branch window will appear. Pressing enter will choose the 
 After the git branch window, a prompt will be presented to enter the path name to write the worktree to.
 
 As of now you can not specify the upstream in the telescope create workflow, however if it finds a branch of the same name in the origin it will use it
+
+## Fzf-lua<a name="fzf-lua"></a>
+
+Register the fzf-lua extension:
+
+```lua
+require("git-worktree.fzf").setup()
+```
+
+To list/switch/delete worktrees:
+
+```lua
+:lua require("fzf-lua").git_worktree()
+-- <Enter> - switches to that worktree
+-- <c-d> - deletes that worktree
+-- <c-f> - toggles forcing of the next deletion
+```
+
+You can override keymaps by passing `actions` in your call, following fzf-lua conventions.
+
+To create a worktree:
+
+```lua
+:lua require("fzf-lua").create_git_worktree()
+```
 
 ## Hooks<a name="hooks"></a>
 
