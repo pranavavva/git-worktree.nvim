@@ -163,9 +163,14 @@ local function parse_branch_name(line)
 end
 
 local function prompt_for_path(default_path)
-    local path = vim.fn.input("Path to subtree > ")
+    local default_input = "../"
+    if default_path and default_path ~= "" then
+        default_input = default_input .. default_path
+    end
+
+    local path = vim.fn.input("Path to subtree > ", default_input)
     if path == "" then
-        path = default_path
+        path = default_input
     end
     return path
 end
