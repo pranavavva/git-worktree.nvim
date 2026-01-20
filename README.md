@@ -21,6 +21,7 @@ fix that).
 <!-- mdformat-toc end -->
 
 ## Known Issues<a name="known-issues"></a>
+
 There are a few known issues.  I'll try to be actively filing them in the issues.  If you experience something, and it's not an issue, feel free to make an issue!  Even if it's a dupe I am just happy for the contribution.
 
 ## Dependencies<a name="dependencies"></a>
@@ -34,7 +35,7 @@ Optional telescope.nvim for telescope extension
 First, install the plugin the usual way you prefer.
 
 ```console
-Plug 'ThePrimeagen/git-worktree.nvim'
+Plug 'pranavavva/git-worktree.nvim'
 ```
 
 Next, re-source your `vimrc`/`init.vim` and execute `PlugInstall` to ensure you have the plugin
@@ -53,18 +54,23 @@ git clone --bare <upstream>
 If you do not use a bare repo, using telescope create command will be more helpful in the process of creating a branch.
 
 ### Debugging
+
 git-worktree writes logs to a `git-worktree-nvim.log` file that resides in Neovim's cache path. (`:echo stdpath("cache")` to find where that is for you.)
 
 By default, logging is enabled for warnings and above. This can be changed by setting `vim.g.git_worktree_log_level` variable to one of the following log levels: `trace`, `debug`, `info`, `warn`, `error`, or `fatal`. Note that this would have to be done **before** git-worktree's `setup` call. Alternatively, it can be more convenient to launch Neovim with an environment variable, e.g. `> GIT_WORKTREE_NVIM_LOG=trace nvim`. In case both, `vim.g` and an environment variable are used, the log level set by the environment variable overrules. Supplying an invalid log level defaults back to warnings.
 
 ### Troubleshooting
+
 If the upstream is not setup correctly when trying to pull or push, make sure the following command returns what is shown below. This seems to happen with the gitHub cli.
+
 ```
 git config --get remote.origin.fetch
 
 +refs/heads/*:refs/remotes/origin/*
 ```
+
 if it does not run the following
+
 ```
 git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 ```
@@ -126,6 +132,7 @@ require("telescope").load_extension("git_worktree")
 ```
 
 ### Switch and Delete a worktrees
+
 To bring up the telescope window listing your workspaces run the following
 
 ```lua
@@ -136,11 +143,13 @@ To bring up the telescope window listing your workspaces run the following
 ```
 
 ### Create a worktree
+
 To bring up the telescope window to create a new worktree run the following
 
 ```lua
 :lua require('telescope').extensions.git_worktree.create_git_worktree()
 ```
+
 First a telescope git branch window will appear. Pressing enter will choose the selected branch for the branch name. If no branch is selected, then the prompt will be used as the branch name.
 
 After the git branch window, a prompt will be presented to enter the path name to write the worktree to.
@@ -179,6 +188,3 @@ or other plugins to perform follow up operations that will help in turbo
 charging your development experience!
 
 ## Made with fury<a name="made-with-fury"></a>
-
-All plugins are made live on [Twitch](https://twitch.tv/ThePrimeagen) with love
-and fury.  Come and join!
